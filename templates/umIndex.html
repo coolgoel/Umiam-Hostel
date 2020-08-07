@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+    <head>
+        <title>Umiam Hostel</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+        <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display:400,400i|Roboto+Mono&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
+        <link rel="stylesheet" href="{% static 'fonts/ionicons/css/ionicons.min.css' %}">
+        <link rel="stylesheet" href="{% static 'fonts/fontawesome/css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+        <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+
+        <!-- Theme Style -->
+        <link rel="stylesheet" href="{% static 'css/my_style.css' %}">
+
+    </head>
+
+    <body class="bg-light">
+
+        <header role="banner">
+            <nav class="navbar navbar-expand-xl  bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand " href="{% url 'umiam:index' %}">Umiam Hostel</a>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05"
+                    aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+
+                    <div class="collapse navbar-collapse" id="navbarsExample05">
+                        <ul class="navbar-nav pl-md-5 ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="{% url 'umiam:index' %}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'umiam:index' %}#about">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'umiam:index' %}#facilities">Facilities</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'umiam:index' %}#gallery">Gallery</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'umiam:index' %}#achievements">Achievements</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'umiam:index' %}#meet-the-team">HMC</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'umiam:index' %}#quick-links">Important Links</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <!-- END header -->
+
+        <div class="slider-item overlay" data-stellar-background-ratio="0.5"
+        style="background-image: url({% static 'images/umiamhostel1.jpg' %});">
+            <div class="container">
+                <div class="row slider-text align-items-center justify-content-center">
+                    <div class="col-lg-12 text-center col-sm-12">
+                        <p data-aos="fade-up" data-aos="fade-up" data-aos-delay="">We Welcome You To</p>
+                        <h1 class="mb-4" data-aos="fade-up" data-aos-delay="100">UMIAM HOSTEL</h1>
+                        <div class="btn-play-wrap mx-auto" data-aos="fade-up" data-aos-delay="200">
+                            <a href="https://youtu.be/0xmNtymiGK8" data-fancybox data-ratio="2" class="btn-play">
+                                <span class="ion ion-ios-play"></span>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Video Slider -->
+
+        <div id="facilities" class="section portfolio-section">
+            <div class="container">
+                <div class="row mb-5 justify-content-center" data-aos="fade-up">
+                    <div class="col-md-8 text-center">
+                        <h2 class="mb-4 section-title">Facilities</h2>
+                        <p>Umiam hostel provides a wide range of facilities for comfort and entertainment of its residents.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row mb-5 no-gutters">
+
+                    {% for facility in facilities %}
+                        <div id="{{ facility.facility_name }}" class="col-sm-6 col-md-6 col-lg-6" data-aos="fade-up" data-aos-delay="100" style="padding: 10px">
+                            <div class="work-thumb" style="background: url('{{ facility.pic.url }}') center; background-size: cover; padding-top: 60%; width: 100%; position: center">
+                                <div class="work-text">
+                                    <h2>{{ facility.facility_name }}</h2>
+                                    <p>{{ facility.details }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- END Facilities -->
+
+        <div id="gallery" class="section bg-light block-11">
+            <div class="container">
+                    <div class="row justify-content-center mb-5">
+                        <div class="col-md-8 text-center">
+                            <h2 id="gallery-overview-header" class="mb-4 section-title">Gallery Overview</h2>
+
+                        </div>
+                    </div>
+                {% if gallery_overview %}
+                    <div id="gallery-carousel">
+                        <div id="show-more" class="row col-lg-12 justify-content-center">
+                            <a class="a">Show More <i class="fa fa-chevron-down"></i></a>
+                        </div>
+                        <div class="nonloop-block-11 owl-carousel">
+                            {% for event in gallery_overview %}
+                                <div class="item">
+                                    <div class="block-33 h-100">
+                                        <div class="vcard d-flex mb-3" style="background: url('{{ event.event_pic.url }}') center; background-size: cover; padding-top: 70%; width: 100%; position: center">
+                                            <div class="work-text">
+                                                <p>{{ event.event_description }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="text text-center">
+                                            <blockquote>
+                                                <p>{{ event.event_name }}</p>
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if gallery %}
+                    <div id="gallery-images-all" style="display: none">
+                        <div id="show-less" class="row col-lg-12 justify-content-center mb-4">
+                            <a>Show Less <i class="fa fa-chevron-up"></i></a>
+                        </div>
+                        {% for gallery_row in gallery %}
+                            <div class="block-11 container d-flex justify-content-center">
+                                <div class="row col-lg-12 d-flex justify-content-center">
+                                    {% for event in gallery_row %}
+                                        <div class="col-md-3 mb-4" >
+                                            <div class="service" data-aos="fade-up" data-aos-delay="">
+                                                <div class="" style="background: url('{{ event.event_pic.url }}') center; background-size: cover; padding-top: 100%; width: 100%; position: center">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <!-- END Gallery -->
+
+        <div id="meet-the-team">
+            <div class="container" style="margin-top: 10px">
+                <div class="row mb-4 justify-content-center" data-aos="fade-up">
+                    <div class="col-md-8 text-center">
+                        <h2 class="mb-4 section-title">Meet The Team</h2>
+                        <p>Hostel is completely managed by a group of meticulous students under supervision of hard working professors. Let's know who these managers are.</p>
+                    </div>
+                </div>
+            </div>
+            <div id="team">
+                <div class="container d-flex justify-content-center">
+                    <div class="row col-lg-12 mb-5 d-flex justify-content-center">
+                        <a class="btn-hmc col-lg-3 col-md-6 mb-4" data-hmc-url="{% url 'umiam:hmc' 2019 %}">
+                            <div class="row justify-content-center">
+                                <button class="btn-dark" style="background-color: #ffc107">2019</button>
+                            </div>
+                        </a>
+                        <a class="btn-hmc col-lg-3 col-md-6 mb-4" data-hmc-url="{% url 'umiam:hmc' 2018 %}">
+                            <div class="row justify-content-center">
+                                <button class="btn-dark" style="background-color: #ffc107; border-width: 0">2018</button>
+                            </div>
+                        </a>
+                        <a class="btn-hmc col-lg-3 col-md-6 mb-4" data-hmc-url="{% url 'umiam:hmc' 2017 %}">
+                            <div class="row justify-content-center">
+                                <button class="btn-dark" style="background-color: #ffc107; border-width: 0">2017</button>
+                            </div>
+                        </a>
+                        <a class="btn-hmc col-lg-3 col-md-6 mb-4" data-hmc-url="{% url 'umiam:hmc' 2016 %}">
+                            <div class="row justify-content-center">
+                                <button class="btn-dark" style="background-color: #ffc107; border-width: 0">2016</button>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="container d-flex justify-content-center">
+                    <div class="row col-lg-12 d-flex justify-content-center">
+                        {% if warden_list %}
+                            {% for warden in warden_list %}
+                            <div class="col-md-6 col-lg-3 mb-4">
+                                <div class="service" data-aos="fade-down" data-aos-delay="">
+                                    <div class="work-thumb">
+                                        <div style="background: url('{{ warden.profile_pic.url }}') center; background-size: cover; padding-top: 100%; width: 100%; position: center; border: #fff 10px"></div>
+                                            <div class="work-text">
+                                                <p>{{ warden.user.first_name }} {{ warden.user.last_name }}</p>
+                                                <p>{{ warden.iitg_email }}</p>
+                                                <p>{{ warden.phone_number }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="text text-center">
+                                            <blockquote>
+                                                <p>{{ warden.designation }}</p>
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                {% if hmc %}
+                    {% for hmc_row in hmc %}
+                        <div class="container d-flex justify-content-center">
+                            <div class="row col-lg-9 d-flex justify-content-center">
+                                {% for hmc_member in hmc_row %}
+                                    <div class="col-md-4 mb-4" >
+                                        <div class="service" data-aos="fade-up" data-aos-delay="">
+                                            <div class="work-thumb" style="background: url('{{ hmc_member.profile_pic.url }}') center; background-size: cover; padding-top: 100%; width: 100%; position: center">
+                                                <div class="work-text">
+                                                    <p>{{ hmc_member.user.first_name }} {{ hmc_member.user.last_name }}</p>
+                                                    <p>{{ hmc_member.iitg_email }}</p>
+                                                    <p>{{ hmc_member.phone_number }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="text text-center">
+                                            <blockquote>
+                                                <p>{{ hmc_member.designation }}</p>
+                                            </blockquote>
+                                        </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="container d-flex justify-content-center">
+                        <div class="row col-lg-9 d-flex justify-content-center">
+                            <p>NO HMC</p>
+                        </div>
+                    </div>
+            {% endif %}
+            </div>
+        </div>
+        <!-- END HMC -->
+
+        <div id="achievements" class="section bg-light block-11">
+            <div class="container">
+                {% if achievements %}
+                    <div class="row justify-content-center mb-5">
+                        <div class="col-md-8 text-center">
+                            <h2 class="mb-4 section-title">Achievements</h2>
+                        </div>
+                    </div>
+                    <div class="nonloop-block-11 owl-carousel">
+                        {% for achievement in achievements %}
+                            <div class="item">
+                                <div class="block-33 h-100">
+                                    <div class="work-thumb vcard d-flex mb-3" style="background: url('{{ achievement.achievement_pic.url }}') center; background-size: cover; padding-top: 70%; width: 100%; position: center">
+                                        <div class="work-text">
+                                        <blockquote>
+                                            <p>{{ achievement.achievement_description | safe }}</p>
+                                        </blockquote>
+                                        </div>
+                                    </div>
+                                    <div class="text text-center">
+                                        <p>{{ achievement.achievement_name }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <!-- END Achievements -->
+
+        <footer class="site-footer" role="contentinfo" style="padding: 50px 50px 10px">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div id="about" class="col-md-4 mb-5">
+                        <h3 class="mb-4"><strong>About Us</strong></h3>
+                        <p class="mb-5">Inaugurated by our former Director Sir, Prof. Gautam Biswas, Umiam Hostel was the 8th Hostel
+                        in IITG. The origin of name came from the river Umiam originating from Meghalaya. The composition of the
+                        Hostel residents is also very rich, including students of Bachelor's, Master's and Doctorate degree. So, in
+                        every way this Hostel represents the soul of IIT G</p>
+                        <ul class="list-unstyled footer-link d-flex footer-social">
+                        <li><a href="#" class="p-2"><span class="fa fa-twitter"></span></a></li>
+                        <li><a href="#" class="p-2"><span class="fa fa-facebook"></span></a></li>
+                        <li><a href="#" class="p-2"><span class="fa fa-linkedin"></span></a></li>
+                        <li><a href="#" class="p-2"><span class="fa fa-instagram"></span></a></li>
+                        </ul>
+
+                    </div>
+
+                    <div class="col-md-1 mb-5 pl-md-5"></div>
+
+                    <div class="col-md-4 mb-5 pl-md-5">
+                        <div class="mb-5">
+                            <h3 class="mb-4">Contact Info</h3>
+                            <ul class="list-unstyled footer-link quick-contact">
+                                <li class="d-block">
+                                    <span class="d-block caption">Umiam Hostel</span>
+                                    <span class="caption-text">IIT Guwahati, Assam </span>
+                                </li>
+                                <li class="d-block">
+                                    <span class="d-block caption">Pin Code: 781039</span>
+                                </li>
+                                <li class="d-block">
+                                    <span class="d-block caption">Telephone:</span><span class="caption-text">+91 8447 02147</span>
+                                </li>
+                                <li class="d-block">
+                                    <span class="d-block caption">Email:</span><span class="caption-text">umiam@iitg.ac.in</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {% if quick_links %}
+                        <div id="quick-links" class="col-md-3 mb-5">
+                            <h3 class="mb-4">Quick Links</h3>
+                            <ul class="list-unstyled footer-link">
+                                {% for link in quick_links %}
+                                    <li><a href="{{ link.url }}">{{ link.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="row">
+                    <div class="col-12 text-md-center text-left">
+                        <p>Thank You for Visiting!</p>
+                        <p class="small">Maintained by Bhasker Goel | Sourav Goel</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- END footer -->
+
+        <!-- loader -->
+        <div id="loader" class="show fullscreen">
+            <svg class="circular" width="48px" height="48px">
+                <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"></circle>
+                <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#ffc107"></circle>
+            </svg>
+        </div>
+
+        <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+        <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+        <script src="{% static 'js/popper.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{%  static 'js/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+        <script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
+        <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+        <script src="{% static 'js/aos.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+        <script>
+            $(document).ready(function () {
+                $("#team").on('click', '.btn-hmc', function (e) {
+                  e.preventDefault();
+                  const hmc_url = $(this).attr("data-hmc-url");
+                  console.log(hmc_url);
+                  $.ajax({
+                      url: hmc_url,
+                      method: "GET",
+                      data: {},
+                      success: function (data) {
+                          $("#team").html(data);
+                          console.log(data);
+                      }
+                  });
+              });
+                $("#show-more").on('click', function () {
+                    $("#gallery-carousel").toggle();
+                    $("#gallery-images-all").toggle();
+                });
+                $("#show-less").on('click', function () {
+                    $("#gallery-carousel").toggle();
+                    $("#gallery-images-all").toggle();
+                });
+            });
+        </script>
+    </body>
+
+</html>

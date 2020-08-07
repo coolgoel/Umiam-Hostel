@@ -1,0 +1,97 @@
+<div class="container d-flex justify-content-center">
+    <div class="row col-lg-12 mb-5 d-flex justify-content-center">
+        <a class="btn-hmc col-lg-3 col-md-6 mb-4" data-hmc-url="{% url 'umiam:hmc' 2019 %}">
+            <div class="row justify-content-center">
+                {% ifequal year '2019' %}
+                    <button class="btn-dark" style="background-color: #ffc107">2019</button>
+                {% else %}
+                    <button class="btn-dark" style="background-color: #ffc107; border-width: 0">2019</button>
+                {% endifequal %}
+            </div>
+        </a>
+        <a class="btn-hmc col-lg-3 col-md-6 mb-4" data-hmc-url="{% url 'umiam:hmc' 2018 %}">
+            <div class="row justify-content-center">
+                {% ifequal year '2018' %}
+                    <button class="btn-dark" style="background-color: #ffc107">2018</button>
+                {% else %}
+                    <button class="btn-dark" style="background-color: #ffc107; border-width: 0">2018</button>
+                {% endifequal %}
+            </div>
+        </a>
+        <a class="btn-hmc col-lg-3 col-md-6 mb-4" data-hmc-url="{% url 'umiam:hmc' 2017 %}">
+            <div class="row justify-content-center">
+                {% ifequal year '2017' %}
+                    <button class="btn-dark" style="background-color: #ffc107">2017</button>
+                {% else %}
+                    <button class="btn-dark" style="background-color: #ffc107; border-width: 0">2017</button>
+                {% endifequal %}
+            </div>
+        </a>
+        <a class="btn-hmc col-lg-3 col-md-6 mb-4" data-hmc-url="{% url 'umiam:hmc' 2016 %}">
+            <div class="row justify-content-center">
+                {% ifequal year '2016' %}
+                    <button class="btn-dark" style="background-color: #ffc107">2016</button>
+                {% else %}
+                    <button class="btn-dark" style="background-color: #ffc107; border-width: 0">2016</button>
+                {% endifequal %}
+            </div>
+        </a>
+    </div>
+</div>
+<div class="container d-flex justify-content-center">
+    <div class="row col-lg-12 d-flex justify-content-center">
+        {% if warden_list %}
+            {% for warden in warden_list %}
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="service" data-aos="fade-down" data-aos-delay="">
+                    <div class="work-thumb">
+                        <div style="background: url('{{ warden.profile_pic.url }}') center; background-size: cover; padding-top: 100%; width: 100%; position: center; border: #fff 10px"></div>
+                            <div class="work-text">
+                                <p>{{ warden.user.first_name }} {{ warden.user.last_name }}</p>
+                                <p>{{ warden.iitg_email }}</p>
+                                <p>{{ warden.phone_number }}</p>
+                            </div>
+                        </div>
+                        <div class="text text-center">
+                            <blockquote>
+                                <p>{{ warden.designation }}</p>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% if hmc %}
+    {% for hmc_row in hmc %}
+        <div class="container d-flex justify-content-center">
+            <div class="row col-lg-9 d-flex justify-content-center">
+                {% for hmc_member in hmc_row %}
+                    <div class="col-md-4 mb-4" >
+                        <div class="service" data-aos="fade-up" data-aos-delay="">
+                            <div class="work-thumb" style="background: url('{{ hmc_member.profile_pic.url }}') center; background-size: cover; padding-top: 100%; width: 100%; position: center">
+                                <div class="work-text">
+                                    <p>{{ hmc_member.user.first_name }} {{ hmc_member.user.last_name }}</p>
+                                    <p>{{ hmc_member.iitg_email }}</p>
+                                    <p>{{ hmc_member.phone_number }}</p>
+                                </div>
+                            </div>
+                            <div class="text text-center">
+                            <blockquote>
+                                <p>{{ hmc_member.designation }}</p>
+                            </blockquote>
+                        </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <div class="container d-flex justify-content-center">
+        <div class="row col-lg-9 d-flex justify-content-center">
+            <p>NO HMC</p>
+        </div>
+    </div>
+{% endif %}
